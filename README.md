@@ -33,7 +33,7 @@ This app is inspired by the mindset of **Solo Leveling**—grinding alone, break
 
 ---
 
-## 🛠️ Planned Features
+## 🛠️ Extra Features
 
 - Smartwatch-powered rep detection
 - Workout history and analytics
