@@ -37,7 +37,7 @@ This app is inspired by the mindset of **Solo Leveling**—grinding alone, break
 
 - Smartwatch-powered rep detection
 - Workout history and analytics
-- Leaderboard / Challenges
+- Challenges
 - Dark mode toggle
 - Favorite quotes
 - Daily reminder notifications
