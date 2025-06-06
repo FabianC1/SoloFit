@@ -52,4 +52,4 @@ Currently in planning phase. Development will begin on **Wednesday, June 12th**.
 ---
 
 
-**SoloFit** – Train alone. E-Class today. S-Class with time, discipline, and relentless effort.
+**SoloFit** – Train alone. E-Class today. S-Class with time, discipline, and effort.
