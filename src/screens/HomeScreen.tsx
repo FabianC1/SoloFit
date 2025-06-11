@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useCallback, } from 'react';
-import { quotes } from './data/quotes';
+import { quotes } from '../data/quotes';
 import {
     View,
     Text,
@@ -8,7 +8,7 @@ import {
     ScrollView,
     KeyboardAvoidingView,
     Platform,
-    RefreshControl
+    RefreshControl,
 } from 'react-native';
 
 const HomeScreen = () => {
