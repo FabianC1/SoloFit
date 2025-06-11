@@ -10,19 +10,21 @@ No equipment. No excuses. Just you vs. yesterday.
 
 ## 🚀 Features
 
-- **Custom Workouts**: Add your own bodyweight exercises like pushups, situps, or squats
-- **Auto Rep Tracking** *(planned)*: Smartwatch integration to automatically count your reps
-- **Daily Motivation**: Get a new motivational quote every day to stay in the zone
-- **Progress Logging**: Track your completed reps, workouts, and streaks
-- **Firebase Integration**: Authentication, real-time sync, and cloud storage
+- **Custom Workouts**: Add your own bodyweight exercises like pushups, situps, or squats  
+- **Auto Rep Tracking** *(planned)*: Smartwatch integration to automatically count your reps  
+- **Daily Motivation**: Get a new motivational quote every day to stay in the zone  
+- **Progress Logging**: Track your completed reps, workouts, and streaks  
+- **Firebase Integration**: Authentication, real-time sync, and cloud storage  
+- **Keyboard-aware Input Handling**: Seamless keyboard transitions on both iOS and Android  
+- **Pull-to-Refresh Support**: Every screen can be manually refreshed for live data updates
 
 ---
 
 ## 📱 Tech Stack
 
-- **React Native** + **Expo**
+- **React Native** + **Expo** (iOS + Android support)
 - **TypeScript**
-- **Firebase** (Auth, Firestore, possibly Functions)
+- **Firebase** (Auth, Firestore, possibly Cloud Functions)
 - **Google Fit / Apple HealthKit** *(planned)*
 
 ---
@@ -33,7 +35,7 @@ This app is inspired by the mindset of **Solo Leveling**—grinding alone, break
 
 ---
 
-## 🛠️ Extra Features
+## 🛠️ Extra Features (Planned)
 
 - Smartwatch-powered rep detection
 - Workout history and analytics
@@ -45,9 +47,19 @@ This app is inspired by the mindset of **Solo Leveling**—grinding alone, break
 
 ---
 
+## 🧩 App Experience
+
+- Fully cross-platform (iOS + Android)
+- Pull-to-refresh supported on every screen
+- Responsive layout with full keyboard safety and smooth transitions
+- Dark mode and modern UI styling throughout
+
+---
+
 ## ⚡ Status
 
-Currently in planning phase. Development will begin on **Wednesday, June 12th**.
+Currently in planning phase. Development begins **Wednesday, June 12th**.
 
+---
 
 **SoloFit** – Train alone. E-Class today. S-Class with time, discipline, and relentless effort.
