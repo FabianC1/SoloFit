@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Switch } from 'react-native';
 import { useQuotePreferences } from '../context/QuotePreferencesContext';
 
@@ -14,19 +14,23 @@ const SettingsScreen = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.heading}>Quote Preferences</Text>
+      <Text style={styles.heading}>Settings</Text>
 
-      {Object.entries(quoteFilters).map(([key, value]) => (
-        <View key={key} style={styles.option}>
-          <Text style={styles.label}>{key.charAt(0).toUpperCase() + key.slice(1)} Quotes</Text>
-          <Switch
-            value={value}
-            onValueChange={() => toggleFilter(key as keyof typeof quoteFilters)}
-            thumbColor={value ? '#0099ff' : '#4b5563'}
-            trackColor={{ false: '#374151', true: '#ffffff' }}
-          />
-        </View>
-      ))}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Quote Preferences</Text>
+
+        {Object.entries(quoteFilters).map(([key, value]) => (
+          <View key={key} style={styles.option}>
+            <Text style={styles.label}>{key.charAt(0).toUpperCase() + key.slice(1)} Quotes</Text>
+            <Switch
+              value={value}
+              onValueChange={() => toggleFilter(key as keyof typeof quoteFilters)}
+              thumbColor={value ? '#0099ff' : '#4b5563'}
+              trackColor={{ false: '#374151', true: '#ffffff' }}
+            />
+          </View>
+        ))}
+      </View>
     </ScrollView>
   );
 };
@@ -41,18 +45,28 @@ const styles = StyleSheet.create({
     paddingTop: 60,
   },
   heading: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
     color: '#f9fafb',
-    marginBottom: 24,
+    marginBottom: 32,
+  },
+  section: {
+    backgroundColor: '#1f2937',
+    padding: 16,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#374151',
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#60a5fa',
+    marginBottom: 12,
   },
   option: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#1f2937',
-    borderRadius: 12,
-    padding: 16,
     marginBottom: 16,
   },
   label: {
