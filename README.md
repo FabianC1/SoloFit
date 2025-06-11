@@ -44,6 +44,7 @@ This app is inspired by the mindset of **Solo Leveling**—grinding alone, break
 - Dark mode toggle
 - Favorite quotes
 - Daily reminder notifications
+- Quote Preferences: Let users choose which types of motivational quotes they want to see (e.g. Bible, anime, movie, SoloFit originals) or disable them entirely
 
 ---
 
