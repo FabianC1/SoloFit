@@ -26,8 +26,8 @@ const SettingsScreen = () => {
           <Switch
             value={value}
             onValueChange={() => toggleFilter(key as keyof typeof quoteFilters)}
-            thumbColor={value ? '#facc15' : '#4b5563'}
-            trackColor={{ false: '#374151', true: '#fde68a' }}
+            thumbColor={value ? '#0099ff' : '#4b5563'}
+            trackColor={{ false: '#374151', true: '#8400ff' }}
           />
         </View>
       ))}

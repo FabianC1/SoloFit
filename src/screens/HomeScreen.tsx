@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     slogan: {
         fontSize: 16,
         fontStyle: 'italic',
-        color: '#60a5fa', // sky blue
+        color: '#60a5fa',
         marginBottom: 12,
     },
 
