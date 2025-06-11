@@ -2,7 +2,7 @@
 
 **“From E-Class to S-Class.”**
 
-SoloFit is a mobile workout app built with React Native, Firebase, and smartwatch integration—designed for those who train like it’s a solo leveling quest.
+SoloFit is a cross-platform mobile workout app built with React Native, Firebase, and smartwatch integration—designed for those who train like it’s a solo leveling quest.
 
 No equipment. No excuses. Just you vs. yesterday.
 
