@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useCallback, } from 'react';
+import { useQuotePreferences } from '../context/QuotePreferencesContext';
 import { quotes } from '../data/quotes';
 import {
     View,
@@ -14,6 +15,7 @@ import {
 const HomeScreen = () => {
     const [refreshing, setRefreshing] = useState(false);
     const [quoteSeed, setQuoteSeed] = useState(0);
+    const { quoteFilters } = useQuotePreferences();
 
     const onRefresh = useCallback(() => {
         setRefreshing(true);
@@ -23,10 +25,17 @@ const HomeScreen = () => {
         }, 500);
     }, []);
 
+    const filteredQuotes = useMemo(() => {
+        return quotes.filter(q =>
+            quoteFilters[q.category as keyof typeof quoteFilters]
+        );
+    }, [quoteFilters]);
+
     const randomQuote = useMemo(() => {
-        const index = Math.floor(Math.random() * quotes.length);
-        return quotes[index];
-    }, [quoteSeed]);
+        const list = filteredQuotes.length > 0 ? filteredQuotes : quotes;
+        const index = Math.floor(Math.random() * list.length);
+        return list[index];
+    }, [filteredQuotes, quoteSeed]);
 
 
     return (

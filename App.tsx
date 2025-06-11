@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as NavigationBar from 'expo-navigation-bar';
+import { QuotePreferencesProvider } from './src/context/QuotePreferencesContext';
 
 import HomeScreen from './src/screens/HomeScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
@@ -23,6 +24,7 @@ export default function App() {
   }, []);
 
   return (
+    <QuotePreferencesProvider>
     <SafeAreaProvider>
       <NavigationContainer>
         <StatusBar style="light" />
@@ -65,5 +67,6 @@ export default function App() {
         </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
+    </QuotePreferencesProvider>
   );
 }

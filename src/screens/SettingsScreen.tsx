@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Switch } from 'react-native';
+import { useQuotePreferences } from '../context/QuotePreferencesContext';
 
 const SettingsScreen = () => {
-  const [quoteFilters, setQuoteFilters] = useState({
-    solofit: true,
-    bible: true,
-    anime: true,
-    movie: true,
-  });
+  const { quoteFilters, setQuoteFilters } = useQuotePreferences();
 
   const toggleFilter = (type: keyof typeof quoteFilters) => {
     setQuoteFilters(prev => ({
@@ -27,7 +23,7 @@ const SettingsScreen = () => {
             value={value}
             onValueChange={() => toggleFilter(key as keyof typeof quoteFilters)}
             thumbColor={value ? '#0099ff' : '#4b5563'}
-            trackColor={{ false: '#374151', true: '#8400ff' }}
+            trackColor={{ false: '#374151', true: '#ffffff' }}
           />
         </View>
       ))}
