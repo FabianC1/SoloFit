@@ -1,5 +1,6 @@
 import React, { useMemo, useState, useCallback, } from 'react';
 import { useQuotePreferences } from '../context/QuotePreferencesContext';
+import DailyProgressBar from '../components/DailyProgressBar';
 import { quotes } from '../data/quotes';
 import {
     View,
@@ -51,6 +52,7 @@ const HomeScreen = () => {
                         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
                     }
                 >
+
                     <Text style={styles.heading}>Welcome back, User.</Text>
                     {/* App Slogan */}
                     <Text style={styles.slogan}>“From E-Class to S-Class.”</Text>
@@ -61,6 +63,8 @@ const HomeScreen = () => {
                         <Text style={styles.author}>— {randomQuote.author}</Text>
                     </View>
 
+                    {/* Daily Progress Bar */}
+                    <DailyProgressBar progress={50} />  
 
                     <View style={styles.card}>
                         <Text style={styles.cardTitle}>Today's Workout</Text>
