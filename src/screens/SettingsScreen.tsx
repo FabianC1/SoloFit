@@ -77,18 +77,6 @@ const SettingsScreen = () => {
           </View>
         ))}
       </View>
-
-      {/* Logout Button */}
-      <View style={styles.logoutButtonWrapper}>
-        <TouchableWithoutFeedback
-          onPressIn={handlePressIn}
-          onPressOut={handlePressOut}
-        >
-          <Animated.View style={[styles.logoutButton, { transform: [{ scale: scaleAnim }] }]}>
-            <Text style={styles.logoutText}>Log Out</Text>
-          </Animated.View>
-        </TouchableWithoutFeedback>
-      </View>
     </ScrollView>
   );
 };
@@ -137,23 +125,5 @@ const styles = StyleSheet.create({
     color: '#9ca3af',
     fontSize: 14,
     marginTop: -8,
-  },
-  logoutButtonWrapper: {
-    marginTop: 20,
-    alignItems: 'center',
-  },
-  logoutButton: {
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: '#ef4444',
-    backgroundColor: '#1f2937',
-  },
-  logoutText: {
-    color: '#ef4444',
-    fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
   },
 });

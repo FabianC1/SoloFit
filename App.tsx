@@ -12,6 +12,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import HomeScreen from './src/screens/HomeScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 import WorkoutScreen from './src/screens/WorkoutScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
 
 import { Dimensions, Platform, View } from 'react-native';
 
@@ -50,7 +51,7 @@ export default function App() {
                 screenOptions={({ route }) => ({
                   headerShown: false,
                   tabBarStyle: {
-                    backgroundColor: 'rgba(17, 24, 39, 0.95)',
+                    backgroundColor: 'rgba(17, 24, 39, 0.829)',
                     borderTopWidth: 0, // remove solid border
                     elevation: 0,
                     shadowOpacity: 0,
@@ -75,6 +76,7 @@ export default function App() {
                     if (route.name === 'Home') iconName = 'home';
                     else if (route.name === 'Workouts') iconName = 'barbell';
                     else if (route.name === 'Settings') iconName = 'settings';
+                    else if (route.name === 'Profile') iconName = 'person-circle-outline';
                     else iconName = 'ellipse';
 
                     return <Ionicons name={iconName} size={size} color={color} />;
@@ -84,6 +86,7 @@ export default function App() {
                 <Tab.Screen name="Home" component={HomeScreen} />
                 <Tab.Screen name="Workouts" component={WorkoutScreen} />
                 <Tab.Screen name="Settings" component={SettingsScreen} />
+                <Tab.Screen name="Profile" component={ProfileScreen} />
               </Tab.Navigator>
             </View>
           </NavigationContainer>
