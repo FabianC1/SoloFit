@@ -65,6 +65,15 @@ const ProgressScreen = () => {
       <View style={styles.summaryCard}>
         <Text style={styles.summaryTitle}>Tap a day to view details</Text>
       </View>
+
+      {/* Last Completed Workout */}
+      <View style={styles.lastCompletedCard}>
+        <Text style={styles.lastCompletedText}>
+          Last completed: June 10
+        </Text>
+      </View>
+
+
     </ScrollView>
   );
 };
@@ -105,4 +114,18 @@ const styles = StyleSheet.create({
     color: '#60a5fa',
     marginBottom: 12,
   },
+  lastCompletedText: {
+    color: '#a855f7',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  lastCompletedCard: {
+    backgroundColor: '#1f2937',
+    borderRadius: 12,
+    padding: 20,
+    borderWidth: 1,
+    borderColor: '#374151',
+    marginTop: 16,
+  },
+
 });
