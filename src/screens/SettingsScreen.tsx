@@ -1,9 +1,20 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Switch, TouchableOpacity, Alert } from 'react-native';
+import React, { useRef } from 'react';
+import {
+  Animated,
+  Easing,
+  TouchableWithoutFeedback,
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Switch,
+  Alert,
+} from 'react-native';
 import { useQuotePreferences } from '../context/QuotePreferencesContext';
 
 const SettingsScreen = () => {
   const { quoteFilters, setQuoteFilters } = useQuotePreferences();
+  const scaleAnim = useRef(new Animated.Value(1)).current;
 
   const toggleFilter = (type: keyof typeof quoteFilters) => {
     setQuoteFilters(prev => ({
@@ -14,11 +25,31 @@ const SettingsScreen = () => {
 
   const handleLogout = () => {
     Alert.alert('Logout', 'You have been logged out. (Placeholder)');
-    // TODO: Add actual Firebase auth logout logic
+    // TODO: Add actual Firebase logout logic
+  };
+
+  const handlePressIn = () => {
+    Animated.spring(scaleAnim, {
+      toValue: 0.96,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const handlePressOut = () => {
+    Animated.spring(scaleAnim, {
+      toValue: 1,
+      friction: 3,
+      tension: 100,
+      useNativeDriver: true,
+    }).start(() => handleLogout());
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      keyboardShouldPersistTaps="handled"
+      showsVerticalScrollIndicator={false}
+    >
       <Text style={styles.heading}>Settings</Text>
 
       {/* Appearance Section */}
@@ -47,10 +78,17 @@ const SettingsScreen = () => {
         ))}
       </View>
 
-      {/* Logout */}
-      <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
-        <Text style={styles.logoutText}>Log Out</Text>
-      </TouchableOpacity>
+      {/* Logout Button */}
+      <View style={styles.logoutButtonWrapper}>
+        <TouchableWithoutFeedback
+          onPressIn={handlePressIn}
+          onPressOut={handlePressOut}
+        >
+          <Animated.View style={[styles.logoutButton, { transform: [{ scale: scaleAnim }] }]}>
+            <Text style={styles.logoutText}>Log Out</Text>
+          </Animated.View>
+        </TouchableWithoutFeedback>
+      </View>
     </ScrollView>
   );
 };
@@ -63,7 +101,7 @@ const styles = StyleSheet.create({
     padding: 20,
     flexGrow: 1,
     paddingTop: 60,
-    paddingBottom: 40,
+    paddingBottom: 100,
   },
   heading: {
     fontSize: 28,
@@ -100,13 +138,22 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginTop: -8,
   },
-  logoutButton: {
-    marginTop: 40,
+  logoutButtonWrapper: {
+    marginTop: 20,
     alignItems: 'center',
+  },
+  logoutButton: {
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: '#ef4444',
+    backgroundColor: '#1f2937',
   },
   logoutText: {
     color: '#ef4444',
     fontSize: 16,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
