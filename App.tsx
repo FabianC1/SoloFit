@@ -9,6 +9,7 @@ import { QuotePreferencesProvider } from './src/context/QuotePreferencesContext'
 
 import HomeScreen from './src/screens/HomeScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
+import WorkoutScreen from './src/screens/WorkoutScreen';
 
 import { Dimensions, Platform } from 'react-native';
 
@@ -45,7 +46,7 @@ export default function App() {
               tabBarItemStyle: {
                 justifyContent: 'center',
                 alignItems: 'center',
-                marginTop: 8
+                marginTop: 4
               },
               tabBarIconStyle: {
                 paddingTop: isLargeScreen ? 6 : 2,
@@ -56,6 +57,7 @@ export default function App() {
                 let iconName: keyof typeof Ionicons.glyphMap;
 
                 if (route.name === 'Home') iconName = 'home';
+                else if (route.name === 'Workouts') iconName = 'barbell';
                 else if (route.name === 'Settings') iconName = 'settings';
                 else iconName = 'ellipse';
 
@@ -64,6 +66,7 @@ export default function App() {
             })}
           >
             <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Workouts" component={WorkoutScreen} />
             <Tab.Screen name="Settings" component={SettingsScreen} />
           </Tab.Navigator>
         </NavigationContainer>
