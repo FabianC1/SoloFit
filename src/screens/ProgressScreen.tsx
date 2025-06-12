@@ -2,25 +2,94 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 
-const today = new Date().toISOString().split('T')[0];
 
 const ProgressScreen = () => {
+  const today = new Date().toISOString().split('T')[0];
+
+  const [selectedDay, setSelectedDay] = React.useState<string | null>(new Date().toISOString().split('T')[0]);
+
+  type WorkoutEntry = {
+    exercises: { name: string; reps: number; unit?: string }[];
+    note: string;
+  };
+
+
   const handleDayPress = (day: any) => {
-    console.log('Tapped day', day);
-    // TODO: navigate to daily summary screen with day.dateString
+    setSelectedDay(day.dateString);
   };
 
-  const markedDates = {
-    '2025-06-10': { marked: true, dotColor: '#a855f7' },
-    [today]: {
-      marked: true,
-      dotColor: '#a855f7',
-      selected: true,
-      selectedColor: '#1f2937',
-      selectedTextColor: '#60a5fa', // manually set
+  const mockWorkoutLogs: Record<string, WorkoutEntry> = {
+    '2025-06-10': {
+      exercises: [
+        { name: 'Push Ups', reps: 50 },
+        { name: 'Squats', reps: 60 },
+      ],
+      note: 'Felt strong today!',
     },
-
+    '2025-06-11': {
+      exercises: [
+        { name: 'Plank', reps: 3, unit: 'min' },
+        { name: 'Jumping Jacks', reps: 100 },
+      ],
+      note: 'Quick cardio before breakfast.',
+    },
+    '2025-06-12': {
+      exercises: [
+        { name: 'Burpees', reps: 40 },
+        { name: 'Lunges', reps: 30 },
+        { name: 'Mountain Climbers', reps: 60 },
+      ],
+      note: 'Full-body HIIT. Drenched!',
+    },
+    '2025-06-13': {
+      exercises: [
+        { name: 'Pull Ups', reps: 15 },
+        { name: 'Push Ups', reps: 60 },
+        { name: 'Sit Ups', reps: 50 },
+      ],
+      note: 'Upper body focus. Arms shaking.',
+    },
+    '2025-06-14': {
+      exercises: [
+        { name: 'Yoga', reps: 45, unit: 'min' },
+        { name: 'Breathing Exercises', reps: 10, unit: 'min' },
+      ],
+      note: 'Recovery day. Felt peaceful.',
+    },
   };
+
+  const markedDates = React.useMemo(() => {
+    const marks: Record<string, any> = {};
+
+    Object.keys(mockWorkoutLogs).forEach((date) => {
+      marks[date] = {
+        marked: true,
+        dotColor: '#a855f7',
+      };
+    });
+
+    if (selectedDay) {
+      marks[selectedDay] = {
+        ...(marks[selectedDay] || { marked: true, dotColor: '#a855f7' }),
+        selected: true,
+        selectedColor: '#60a5fa',
+        selectedTextColor: '#1f2937',
+      };
+    } else if (today in marks) {
+      marks[today] = {
+        ...marks[today],
+        selected: true,
+        selectedColor: '#1f2937',
+        selectedTextColor: '#60a5fa',
+      };
+    }
+
+    return marks;
+  }, [mockWorkoutLogs, selectedDay]);
+
+
+
+
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -29,19 +98,8 @@ const ProgressScreen = () => {
       <View style={styles.calendarWrapper}>
         <Calendar
           onDayPress={handleDayPress}
-          markedDates={{
-            '2025-06-10': {
-              marked: true,
-              dotColor: '#a855f7',
-            },
-            [today]: {
-              marked: true,
-              dotColor: '#a855f7',
-              selected: true,
-              selectedColor: '#60a5fa',
-              selectedTextColor: '#1f2937',
-            },
-          }}
+          markedDates={markedDates}
+
           hideExtraDays={false}
           disableAllTouchEventsForInactiveDays={false}
           theme={{
@@ -63,8 +121,25 @@ const ProgressScreen = () => {
 
       {/* Placeholder for Selected Day Summary */}
       <View style={styles.summaryCard}>
-        <Text style={styles.summaryTitle}>Tap a day to view details</Text>
+        {selectedDay && mockWorkoutLogs[selectedDay] ? (
+          <>
+            <Text style={styles.summaryTitle}>Workout Summary</Text>
+            {mockWorkoutLogs[selectedDay].exercises.map((exercise: { name: string; reps: number; unit?: string }, index: number) => (
+              <Text key={index} style={styles.summaryItem}>
+                • {exercise.name}: {exercise.reps} {exercise.unit || 'reps'}
+              </Text>
+            ))}
+            <Text style={styles.note}>
+              Note: {mockWorkoutLogs[selectedDay].note}
+            </Text>
+          </>
+        ) : selectedDay ? (
+          <Text style={styles.summaryTitle}>No workout logged on this day.</Text>
+        ) : (
+          <Text style={styles.summaryTitle}>Tap a day to view details</Text>
+        )}
       </View>
+
 
       {/* Last Completed Workout */}
       <View style={styles.lastCompletedCard}>
@@ -72,7 +147,6 @@ const ProgressScreen = () => {
           Last completed: June 10
         </Text>
       </View>
-
 
     </ScrollView>
   );
@@ -127,5 +201,15 @@ const styles = StyleSheet.create({
     borderColor: '#374151',
     marginTop: 16,
   },
+  summaryItem: {
+    color: '#f9fafb',
+    fontSize: 16,
+    marginBottom: 4,
+  },
+  note: {
+    marginTop: 12,
+    fontStyle: 'italic',
+    color: '#9ca3af',
+  }
 
 });

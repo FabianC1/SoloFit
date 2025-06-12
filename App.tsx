@@ -53,7 +53,7 @@ export default function App() {
                   headerShown: false,
                   tabBarStyle: {
                     backgroundColor: 'rgba(17, 24, 39, 0.829)',
-                    borderTopWidth: 0, // remove solid border
+                    borderTopWidth: 0,
                     elevation: 0,
                     shadowOpacity: 0,
                     borderTopLeftRadius: 16,
@@ -74,10 +74,10 @@ export default function App() {
                   tabBarIcon: ({ color, size }) => {
                     let iconName: keyof typeof Ionicons.glyphMap;
 
-                    if (route.name === 'Home') iconName = 'home';
+                    if (route.name === 'Home') iconName = 'home-outline';
                     else if (route.name === 'Workouts') iconName = 'barbell';
                     else if (route.name === 'Progress') iconName = 'trending-up';
-                    else if (route.name === 'Settings') iconName = 'settings';
+                    else if (route.name === 'Settings') iconName = 'settings-outline';
                     else if (route.name === 'Profile') iconName = 'person-circle-outline';
                     else iconName = 'ellipse';
 
