@@ -34,7 +34,7 @@ export default function App() {
             <View style={{ flex: 1 }}>
               {/* Gradient border overlay */}
               <LinearGradient
-                colors={['#4b0082', '#60a5fa']}
+                colors={['#60a5fa', '#6900b4']}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
                 style={{
