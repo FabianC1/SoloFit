@@ -40,21 +40,20 @@ const HomeScreen = () => {
 
 
     return (
-        <KeyboardAvoidingView
-            style={{ flex: 1 }}
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            keyboardVerticalOffset={80}
-        >
-            <SafeAreaView style={styles.container}>
+        <View style={{ flex: 1, backgroundColor: '#111827' }}>
+            <KeyboardAvoidingView
+                style={{ flex: 1 }}
+                behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+                keyboardVerticalOffset={80}
+            >
                 <ScrollView
                     contentContainerStyle={styles.content}
+                    keyboardShouldPersistTaps="handled"
                     refreshControl={
                         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
                     }
                 >
-
                     <Text style={styles.heading}>Welcome back, User.</Text>
-                    {/* App Slogan */}
                     <Text style={styles.slogan}>“From E-Class to S-Class.”</Text>
 
                     {/* Quote of the Day */}
@@ -62,9 +61,6 @@ const HomeScreen = () => {
                         <Text style={styles.quote}>"{randomQuote.text}"</Text>
                         <Text style={styles.author}>— {randomQuote.author}</Text>
                     </View>
-
-                    {/* Daily Progress Bar */}
-                    <DailyProgressBar progress={50} />  
 
                     <View style={styles.card}>
                         <Text style={styles.cardTitle}>Today's Workout</Text>
@@ -75,11 +71,12 @@ const HomeScreen = () => {
 
                     <View style={styles.card}>
                         <Text style={styles.cardTitle}>Progress</Text>
+                        <DailyProgressBar progress={50} />
                         <Text style={styles.placeholder}>[Graph coming soon]</Text>
                     </View>
                 </ScrollView>
-            </SafeAreaView>
-        </KeyboardAvoidingView>
+            </KeyboardAvoidingView>
+        </View>
     );
 };
 
@@ -93,6 +90,7 @@ const styles = StyleSheet.create({
     content: {
         padding: 20,
         paddingTop: 60,
+        paddingBottom: 40,
     },
     heading: {
         fontSize: 24,

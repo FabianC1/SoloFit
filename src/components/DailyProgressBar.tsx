@@ -34,8 +34,7 @@ const DailyProgressBar = ({ progress }: DailyProgressBarProps) => {
 const styles = StyleSheet.create({
     container: {
         marginVertical: 16,
-        paddingHorizontal: 20,
-        paddingBottom: 30,
+        paddingBottom: 20,
     },
     title: {
         color: '#fff',
