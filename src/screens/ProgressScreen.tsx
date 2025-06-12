@@ -12,8 +12,14 @@ const ProgressScreen = () => {
 
   const markedDates = {
     '2025-06-10': { marked: true, dotColor: '#a855f7' },
-    [today]: { marked: true, dotColor: '#a855f7', selected: true },
-    // Add more marked dates dynamically from your workout logs
+    [today]: {
+      marked: true,
+      dotColor: '#a855f7',
+      selected: true,
+      selectedColor: '#1f2937',
+      selectedTextColor: '#60a5fa', // manually set
+    },
+
   };
 
   return (
@@ -23,22 +29,36 @@ const ProgressScreen = () => {
       <View style={styles.calendarWrapper}>
         <Calendar
           onDayPress={handleDayPress}
-          markedDates={markedDates}
+          markedDates={{
+            '2025-06-10': {
+              marked: true,
+              dotColor: '#a855f7',
+            },
+            [today]: {
+              marked: true,
+              dotColor: '#a855f7',
+              selected: true,
+              selectedColor: '#60a5fa',
+              selectedTextColor: '#1f2937',
+            },
+          }}
+          hideExtraDays={false}
+          disableAllTouchEventsForInactiveDays={false}
           theme={{
+            calendarBackground: '#1f2937',
+            backgroundColor: '#1f2937',
             todayTextColor: '#60a5fa',
-            arrowColor: '#60a5fa',
+            dayTextColor: '#e5e7eb',
+            textDisabledColor: '#6b7280',
+            textInactiveColor: '#6b7280',
             monthTextColor: '#f9fafb',
             textMonthFontWeight: 'bold',
             textDayFontSize: 16,
             textDayHeaderFontSize: 14,
-            backgroundColor: '#1f2937',
-            calendarBackground: '#1f2937',
-            dayTextColor: '#e5e7eb',
             textSectionTitleColor: '#9ca3af',
-            textInactiveColor: '#4b5563',
+            arrowColor: '#60a5fa',
           }}
         />
-
       </View>
 
       {/* Placeholder for Selected Day Summary */}
