@@ -9,6 +9,8 @@ import {
     TouchableWithoutFeedback,
     Image
 } from 'react-native';
+import { Feather } from '@expo/vector-icons';
+
 
 const ProfileScreen = () => {
     const scaleAnim = useRef(new Animated.Value(1)).current;
@@ -41,7 +43,7 @@ const ProfileScreen = () => {
             showsVerticalScrollIndicator={false}
         >
             <View style={styles.headerRow}>
-                <Text style={styles.heading}>Profile</Text>
+                <Text style={[styles.heading]}>Profile</Text>
                 <View style={styles.avatarContainer}>
                     <Image
                         source={require('../../assets/icon.png')}
@@ -50,9 +52,10 @@ const ProfileScreen = () => {
 
                     <TouchableWithoutFeedback onPressIn={handlePressIn} onPressOut={handlePressOut}>
                         <Animated.View style={[styles.editButton, { transform: [{ scale: scaleAnim }] }]}>
-                            <Text style={styles.editText}>✏️</Text>
+                            <Feather name="edit-2" size={16} color="#60a5fa" />
                         </Animated.View>
                     </TouchableWithoutFeedback>
+
                 </View>
             </View>
 
@@ -115,6 +118,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#f9fafb',
         marginBottom: 32,
+        marginTop: 8
     },
     section: {
         backgroundColor: '#1f2937',
@@ -160,9 +164,10 @@ const styles = StyleSheet.create({
     },
     avatarContainer: {
         position: 'relative',
-        backgroundColor: '#374151', // subtle gray-blue background
+        backgroundColor: '#374151',
         padding: 4,
         borderRadius: 40,
+        top: -6, // lift the avatar slightly
     },
     avatar: {
         width: 64,
@@ -170,6 +175,7 @@ const styles = StyleSheet.create({
         borderRadius: 32,
         borderWidth: 2,
         borderColor: '#60a5fa',
+
     },
     editButton: {
         position: 'absolute',
