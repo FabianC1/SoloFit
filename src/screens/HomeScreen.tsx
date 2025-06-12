@@ -71,7 +71,7 @@ const HomeScreen = () => {
 
                     <View style={styles.card}>
                         <Text style={styles.cardTitle}>Progress</Text>
-                        <DailyProgressBar progress={50} />
+                        <DailyProgressBar progress={59} />
                         <Text style={styles.placeholder}>[Graph coming soon]</Text>
                     </View>
                 </ScrollView>

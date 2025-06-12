@@ -15,6 +15,7 @@ import WorkoutScreen from './src/screens/WorkoutScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 
 import { Dimensions, Platform, View } from 'react-native';
+import ProgressScreen from './src/screens/ProgressScreen';
 
 const { height } = Dimensions.get('window');
 const isLargeScreen = height > 800;
@@ -75,6 +76,7 @@ export default function App() {
 
                     if (route.name === 'Home') iconName = 'home';
                     else if (route.name === 'Workouts') iconName = 'barbell';
+                    else if (route.name === 'Progress') iconName = 'trending-up';
                     else if (route.name === 'Settings') iconName = 'settings';
                     else if (route.name === 'Profile') iconName = 'person-circle-outline';
                     else iconName = 'ellipse';
@@ -85,6 +87,7 @@ export default function App() {
               >
                 <Tab.Screen name="Home" component={HomeScreen} />
                 <Tab.Screen name="Workouts" component={WorkoutScreen} />
+                <Tab.Screen name="Progress" component={ProgressScreen} />
                 <Tab.Screen name="Settings" component={SettingsScreen} />
                 <Tab.Screen name="Profile" component={ProfileScreen} />
               </Tab.Navigator>
