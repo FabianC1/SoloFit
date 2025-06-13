@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 import {
     Animated,
     Alert,
@@ -7,12 +7,15 @@ import {
     View,
     Text,
     TouchableWithoutFeedback,
-    Image
+    Image,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
+import { AuthContext } from '../context/AuthContext';
+import ProtectedMessage from '../components/ProtectedMessage';
 
 const ProfileScreen = () => {
+    const auth = useContext(AuthContext);
     const scaleAnim = useRef(new Animated.Value(1)).current;
 
     const handleLogout = () => {
@@ -42,68 +45,62 @@ const ProfileScreen = () => {
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
         >
-            <View style={styles.headerRow}>
-                <Text style={[styles.heading]}>Profile</Text>
-                <View style={styles.avatarContainer}>
-                    <Image
-                        source={require('../../assets/icon.png')}
-                        style={styles.avatar}
-                    />
+            {auth && auth.user ? (
+                <>
+                    <View style={styles.headerRow}>
+                        <Text style={styles.heading}>Profile</Text>
+                        <View style={styles.avatarContainer}>
+                            <Image source={require('../../assets/icon.png')} style={styles.avatar} />
+                            <TouchableWithoutFeedback onPressIn={handlePressIn} onPressOut={handlePressOut}>
+                                <Animated.View style={[styles.editButton, { transform: [{ scale: scaleAnim }] }]}>
+                                    <Feather name="edit-2" size={16} color="#60a5fa" />
+                                </Animated.View>
+                            </TouchableWithoutFeedback>
+                        </View>
+                    </View>
 
-                    <TouchableWithoutFeedback onPressIn={handlePressIn} onPressOut={handlePressOut}>
-                        <Animated.View style={[styles.editButton, { transform: [{ scale: scaleAnim }] }]}>
-                            <Feather name="edit-2" size={16} color="#60a5fa" />
-                        </Animated.View>
-                    </TouchableWithoutFeedback>
+                    <View style={styles.section}>
+                        <Text style={styles.label}>Username</Text>
+                        <Text style={styles.value}>{auth.user.displayName || 'Your Name Here'}</Text>
+                    </View>
 
-                </View>
-            </View>
+                    <View style={styles.section}>
+                        <Text style={styles.label}>Email</Text>
+                        <Text style={styles.value}>{auth.user.email || 'you@example.com'}</Text>
+                    </View>
 
+                    <View style={styles.section}>
+                        <Text style={styles.label}>Subscription</Text>
+                        <Text style={styles.value}>Free Tier (Upgrade coming soon)</Text>
+                    </View>
 
-            <View style={styles.section}>
-                <Text style={styles.label}>Username</Text>
-                <Text style={styles.value}>Your Name Here</Text>
-                {/* TODO: Pull actual username from auth */}
-            </View>
+                    <View style={styles.section}>
+                        <Text style={styles.label}>Workout Streak</Text>
+                        <Text style={styles.value}>5 Days in a Row</Text>
+                    </View>
 
-            <View style={styles.section}>
-                <Text style={styles.label}>Email</Text>
-                <Text style={styles.value}>you@example.com</Text>
-            </View>
+                    <View style={styles.section}>
+                        <Text style={styles.label}>Joined</Text>
+                        <Text style={styles.value}>April 12, 2025</Text>
+                    </View>
 
-
-            <View style={styles.section}>
-                <Text style={styles.label}>Subscription</Text>
-                <Text style={styles.value}>Free Tier (Upgrade coming soon)</Text>
-            </View>
-
-            <View style={styles.section}>
-                <Text style={styles.label}>Workout Streak</Text>
-                <Text style={styles.value}>5 Days in a Row</Text>
-            </View>
-
-
-            <View style={styles.section}>
-                <Text style={styles.label}>Joined</Text>
-                <Text style={styles.value}>April 12, 2025</Text>
-            </View>
-
-
-            <View style={styles.logoutButtonWrapper}>
-                <TouchableWithoutFeedback
-                    onPressIn={handlePressIn}
-                    onPressOut={handlePressOut}
-                >
-                    <Animated.View style={[styles.logoutButton, { transform: [{ scale: scaleAnim }] }]}>
-                        <Text style={styles.logoutText}>Log Out</Text>
-                    </Animated.View>
-                </TouchableWithoutFeedback>
-            </View>
+                    <View style={styles.logoutButtonWrapper}>
+                        <TouchableWithoutFeedback onPressIn={handlePressIn} onPressOut={handlePressOut}>
+                            <Animated.View style={[styles.logoutButton, { transform: [{ scale: scaleAnim }] }]}>
+                                <Text style={styles.logoutText}>Log Out</Text>
+                            </Animated.View>
+                        </TouchableWithoutFeedback>
+                    </View>
+                </>
+            ) : (
+                <ProtectedMessage />
+            )}
         </ScrollView>
     );
 };
 
 export default ProfileScreen;
+
 
 const styles = StyleSheet.create({
     container: {

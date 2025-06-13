@@ -7,13 +7,11 @@
     "icon": "./assets/AppIcon.png",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
-
     "splash": {
       "image": "./assets/AppIcon.png",
       "resizeMode": "contain",
       "backgroundColor": "#111827"
     },
-
     "ios": {
       "supportsTablet": true,
       "splash": {
@@ -22,7 +20,6 @@
         "backgroundColor": "#111827"
       }
     },
-
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/AppIcon.png",
@@ -33,9 +30,9 @@
         "resizeMode": "contain",
         "backgroundColor": "#111827"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.anonymous.SoloFit"
     },
-
     "web": {
       "favicon": "./assets/AppIcon.png"
     }
