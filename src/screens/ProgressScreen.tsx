@@ -69,8 +69,10 @@ const ProgressScreen = () => {
     });
 
     if (selectedDay) {
+      const isWorkoutDay = selectedDay in mockWorkoutLogs;
+
       marks[selectedDay] = {
-        ...(marks[selectedDay] || { marked: true, dotColor: '#a855f7' }),
+        ...(isWorkoutDay ? { marked: true, dotColor: '#a855f7' } : {}),
         selected: true,
         selectedColor: '#60a5fa',
         selectedTextColor: '#1f2937',

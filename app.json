@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "solofit",
-    "slug": "solofit",
+    "name": "SoloFit",
+    "slug": "SoloFit",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/AppIcon.png",
